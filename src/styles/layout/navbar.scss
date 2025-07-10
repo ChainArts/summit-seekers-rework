@@ -1,0 +1,55 @@
+@use "../general/base";
+@use "../variables";
+
+header{
+    position: sticky;
+    top: 1rem;
+    z-index: 101;
+}
+
+.desktop-nav{
+  
+  background-color: var(--brown);
+  background: var(--brown-transparent);
+  backdrop-filter: blur( 5px );
+  -webkit-backdrop-filter: blur( 5px );
+  border-radius: 3rem;
+  color: var(--white);
+  padding: 1.5rem 2.5rem;
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: var(--inner-section-padding);
+  & ul{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 2rem;
+    & li:first-child{
+      margin-right: auto;
+    }
+  }
+
+  span{
+    cursor: pointer;
+  }
+
+  a {
+    color: var(--white);
+    text-decoration: none;
+  }
+
+}
+
+.mobile-nav{
+    @include base.hidden;
+  }
+
+@media screen and (max-width: variables.$breakpoint) {
+    .desktop-nav{
+        @include base.hidden;
+    }
+
+    .mobile-nav{
+        @include base.show;
+    }
+}

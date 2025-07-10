@@ -1,0 +1,91 @@
+@use "variables";
+
+.has-text-align-center {
+    text-align: center;
+}
+
+.has-text-align-left {
+    text-align: left;
+}
+
+.has-text-align-right {
+    text-align: right;
+}
+
+.wp-block-buttons {
+    width: fit-content;
+    margin: var(--inner-component-padding) auto;
+    .wp-block-button {
+        position: relative;
+        border: 2px solid var(--gray);
+        border-radius: none;
+        background-color: transparent;
+        cursor: pointer;
+        .wp-block-button__link {
+            position: relative;
+            padding: 1.5rem 2.75rem;
+            color: var(--gray);
+            background-color: transparent;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: all 0.3s var(--ease);
+            z-index: 2;
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: -5px;
+            width: 0%;
+            height: 100%;
+            transform-origin: center left;
+            rotate: -3deg;
+            background-color: var(--green-transparent);
+            transition: all 0.3s var(--ease);
+            z-index: 1;
+        }
+
+        &:hover::before,
+        &:focus::before {
+            width: calc(100% + 10px);
+        }
+    }
+}
+
+.wp-block-heading,
+wp-block-image {
+    user-select: none;
+}
+
+.wp-block-social-link{
+    color: var(--white) !important;
+    background-color: transparent !important;
+    scale: 1.5;
+}
+
+footer .wp-block-group{
+    gap: 3rem;
+}
+
+@media screen and (max-width: variables.$breakpoint) {
+    .wp-block-button {
+        font-size: 0.875rem;
+        &::before {
+            width: calc(100% + 10px) !important; ;
+        }
+
+        .wp-block-button__link {
+            padding: 1rem var(--inner-component-padding);
+        }
+    }
+}
+.wp-block-button__link {
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  word-break: break-word;
+    text-decoration: none;
+}

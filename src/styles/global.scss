@@ -1,0 +1,203 @@
+@use "variables";
+
+@mixin center-margin($width: 1300px) {
+    max-width: $width;
+    margin: 0 auto;
+}
+
+@mixin heading ($fontsize) {
+    text-transform: uppercase;
+    font-weight: 500;
+    line-height: normal;
+    font-size: $fontsize;
+}
+
+.lenis.lenis-scrolling {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+    pointer-events: none;
+}
+
+::-webkit-scrollbar{
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--white);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--brown);
+    border-radius: 20px;
+}   
+
+html {
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    
+    scrollbar-color: var(--brown) var(--white);
+
+}
+
+body {
+    @include center-margin(2200px);
+    font-size: var(--font-size);
+    font-weight: normal;
+    background-color: var(--white);
+    color: var(--gray);
+    position: relative;
+}
+
+
+h1 {
+    @include heading(11.5rem);
+    font-family: "Guilty Pleasure";
+    color: var(--green-transparent);
+    text-align: center;
+    padding: calc(2* (var(--inner-section-padding))) 0;
+    background-size: 100%;
+}
+
+#expeditions, #adventure, #about{
+    position: relative;
+    z-index: -1;
+}
+
+#expeditions::after, #adventure::after, #about::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    z-index: -2;
+    opacity: .75;
+    padding-top: 15rem;
+}
+
+#expeditions::after{
+    background-image: url("../assets/expeditions_1400.webp");
+    padding: 0;
+}
+
+#expeditions::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, var(--lighter-blue) 25%, var(--light-blue) 85%, rgba(255, 255, 255, 0) 100% );
+    z-index: -3;
+    padding-top: 15rem;
+}
+
+#adventure::after{
+    background-image: url("../assets/adventure_1400.webp");
+    opacity: 0.25;
+}
+
+#about::after{
+    background-image: url("../assets/about_1400.webp");
+    z-index: 0;
+    padding-top: 30rem;
+}
+
+h2,
+#header h1 {
+    @include center-margin();
+    @include heading(2.25rem);
+    color: var(--green);
+    margin-bottom: var(--inner-section-padding);
+}
+
+h3 {
+    @include heading(1.5rem);
+}
+
+section {
+    @include center-margin();
+    padding: 0 1rem;
+}
+
+p {
+    @include center-margin(900px);
+    line-height: 170%;
+}
+
+
+
+.contain {
+    width: clamp(300px, 100%, variables.$element-width);
+    margin-right: auto;
+    margin-left: auto;
+    padding: 0 1rem;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media screen and (max-width: variables.$breakpoint) {
+
+    :root {
+        --inner-section-padding: 2.25rem;
+        --inner-component-padding: 2.25rem;
+        --small-padding: 0.75rem;
+        --large-gap: 2.25rem;
+    }
+
+    body {
+        font-size: 1rem;
+    }
+
+    h1 {
+        font-size: 4rem;
+    }
+
+    #expeditions::before{
+        padding-top: 5rem;
+    }
+
+    #adventure::after{
+        padding-top: 5rem;
+    }
+
+    #about{
+        padding-bottom: 2rem;
+    }
+
+    #about::after{
+        padding-top: 13rem;
+        opacity: 1;
+    }
+
+
+    h2,
+    #header h1 {
+        font-size: 1.25rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+}

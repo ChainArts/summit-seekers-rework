@@ -1,0 +1,26 @@
+@use "../variables";
+
+.about {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background: linear-gradient(180deg, rgba(0, 0, 0 ,0) 0%, var(--dark-green) 30%);
+    padding: 0  calc(var(--large-gap) * 5) var(--large-gap)  calc(var(--large-gap) * 5);
+    gap: 3rem;
+
+    h2, p {
+        color: var(--white);
+    }
+
+    p {
+        margin-bottom: var(--small-padding);
+    }
+}
+
+@media (max-width: variables.$breakpoint) {
+    .about{
+        background: linear-gradient(180deg, rgba(0, 0, 0 ,0) 0%, var(--dark-green) 8%);
+        padding-top: var(--large-gap);
+    }
+
+}
