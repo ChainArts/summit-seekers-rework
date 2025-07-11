@@ -73,7 +73,7 @@ const expeditionsData: ExpeditionProps[] = [
     },
 ];
 
-const Expeditions: React.FC = () => (
+const Expeditions = () => (
     <>
         {expeditionsData.map((exp, idx) => (
             <Expedition key={idx} {...exp} />

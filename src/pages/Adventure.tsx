@@ -9,7 +9,7 @@ const adventure = {
     content: <><p>Step into a world where adventure knows no limits, and each mountain trek takes you further into uncharted.</p><p>Step into a world where adventure knows no limits, and each mountain trek takes you further into uncharted territories. With Summit Seekers, experience the exhilaration of overcoming new challenges and discovering hidden gems of the wilderness. Our journeys are designed to push your boundaries, physically and spiritually, connecting you deeply with the raw beauty of nature.</p></>,
 };
 
-export default function Adventure() {
+const Adventure = () => {
     return (
         <>
             <Navbar />
@@ -31,3 +31,5 @@ export default function Adventure() {
         </>
     );
 }
+
+export default Adventure;

@@ -20,7 +20,7 @@ interface CarouselProps {
     posts: CarouselPost[];
 }
 
-export default function Carousel({ posts }: CarouselProps) {
+const Carousel = ({ posts }: CarouselProps) => {
     const swiperRef = useRef<SwiperClass | null>(null);
 
     const getSwiperInstance = (swiper: SwiperClass) => {
@@ -55,14 +55,14 @@ export default function Carousel({ posts }: CarouselProps) {
             </div>
         </div>
     );
-}
+};
 
 interface CarouselButtonProps {
     direction: "next" | "prev";
     swiperRef: React.RefObject<SwiperClass | null>;
 }
 
-function CarouselButton({ direction, swiperRef }: CarouselButtonProps) {
+const CarouselButton = ({ direction, swiperRef }: CarouselButtonProps) => {
     const handleClick = () => {
         const swiper = swiperRef.current;
         if (!swiper) return;
@@ -78,13 +78,13 @@ function CarouselButton({ direction, swiperRef }: CarouselButtonProps) {
             {direction === "next" ? <LiaAngleRightSolid /> : <LiaAngleLeftSolid />}
         </div>
     );
-}
+};
 
 interface CarouselItemProps {
     data: CarouselPost;
 }
 
-function CarouselItem({ data }: CarouselItemProps) {
+const CarouselItem = ({ data }: CarouselItemProps) => {
     const { imagePath, alt, link, title, meta } = data;
 
     return (
@@ -99,4 +99,6 @@ function CarouselItem({ data }: CarouselItemProps) {
             </div>
         </a>
     );
-}
+};
+
+export default Carousel;

@@ -47,7 +47,7 @@ function convertDate(dateStr: string): [string, string] {
     return [date.getDate().toString().padStart(2, "0"), date.toLocaleString("en-US", { month: "short" })];
 }
 
-function BookingGridItem({ booking }: { booking: (typeof bookings)[0] }) {
+const BookingGridItem = ({ booking }: { booking: (typeof bookings)[0] }) => {
     const [startDay, startMonth] = convertDate(booking.start);
     const [endDay, endMonth] = convertDate(booking.end);
 
@@ -83,7 +83,7 @@ function BookingGridItem({ booking }: { booking: (typeof bookings)[0] }) {
     );
 }
 
-export default function BookingGrid() {
+const BookingGrid = () => {
     if (bookings.length === 0) return null;
 
     return (
@@ -97,3 +97,6 @@ export default function BookingGrid() {
         </div>
     );
 }
+
+
+export default BookingGrid;

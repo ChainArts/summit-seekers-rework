@@ -54,7 +54,7 @@ const booking = {
 };
 
 // Helper to format dates
-function formatBookingDates(startStr: string, endStr: string) {
+const formatBookingDates = (startStr: string, endStr: string) => {
     const start = new Date(startStr);
     const end = new Date(endStr);
 
@@ -69,7 +69,7 @@ function formatBookingDates(startStr: string, endStr: string) {
     }
 }
 
-export default function Booking() {
+const Booking = () => {
     return (
         <>
             <Navbar />
@@ -111,3 +111,5 @@ export default function Booking() {
         </>
     );
 }
+
+export default Booking;
