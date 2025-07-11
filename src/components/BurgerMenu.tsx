@@ -1,7 +1,6 @@
 import { motion, AnimatePresence, cubicBezier } from "framer-motion";
 import { useState } from "react";
 import logo from "../assets/logo.svg";
-import { NavLink } from "react-router-dom";
 
 
 const menuVariants = {
@@ -58,7 +57,6 @@ const liVariants = {
 
 const BurgerMenu = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const MotionNavLink = motion(NavLink)
     const menu = [
         { id: 1, title: "Booking", url: "#booking" },
         { id: 2, title: "Expeditions", url: "#expeditions" },
@@ -86,13 +84,13 @@ const BurgerMenu = () => {
                     <motion.nav className="menu-overlay" variants={menuVariants} initial="hidden" animate="visible" exit="exit">
                         <motion.ul variants={ulVariants}>
                             <motion.li key={1} variants={liVariants}>
-                                <MotionNavLink to="/#" onClick={() => setIsOpen(!isOpen)}>
+                                <motion.a href="/#" onClick={() => setIsOpen(!isOpen)}>
                                     <motion.img src={logo} alt="logo" />
-                                </MotionNavLink>
+                                </motion.a>
                             </motion.li>
                             {menu.map((item) => (
                                 <motion.li key={item.id} variants={liVariants}>
-                                    <MotionNavLink to={item.url} onClick={() => setIsOpen(!isOpen)}>{item.title}</MotionNavLink>
+                                    <motion.a href={item.url} onClick={() => setIsOpen(!isOpen)}>{item.title}</motion.a>
                                 </motion.li>
                             ))}
                         </motion.ul>
