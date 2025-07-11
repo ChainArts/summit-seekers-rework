@@ -1,4 +1,6 @@
 import React from "react";
+import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 
 const Footer: React.FC = () => (
     <footer>
@@ -60,11 +62,17 @@ const Footer: React.FC = () => (
             </div>
         </div>
         <div className="contact">
-            <p className="follow">New Adventure Story</p>
+            <p className="follow">Follow me</p>
             <div className="follow-content">
-                <p>Bla bla</p>
+                <FaInstagram />
+                <FaFacebook />
+                <FaLinkedin />
             </div>
-            <ul className="footer-menu"></ul>
+            <ul className="footer-menu">
+                <NavLink to="/privacy">Privacy</NavLink>
+                <NavLink to="/terms">Terms of Use</NavLink>
+                <NavLink to="/cookies">Cookies</NavLink>
+            </ul>
         </div>
     </footer>
 );

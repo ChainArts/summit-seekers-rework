@@ -3,6 +3,8 @@ import Home from './pages/Home'
 import { Route, Routes } from 'react-router-dom'
 import CustomCursor from './components/CustomCursor'
 import Footer from './components/Footer'
+import Booking from './pages/Booking'
+import Adventure from './pages/Adventure'
 
 
 const App = () => {
@@ -12,7 +14,8 @@ const App = () => {
             <CustomCursor />
             <Routes>
                 <Route path="/" element={<Home/>} />
-                <Route path="/booking" element={<div>Booking</div>} />
+                <Route path="/booking" element={<Booking />} />
+                <Route path="/adventure" element={<Adventure /> } />
             </Routes>
             <Footer />
       </ReactLenis>

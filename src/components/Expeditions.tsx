@@ -2,6 +2,7 @@ import React from "react";
 import canyon2 from "../assets/canyon_2.png";
 import aiCampfire from "../assets/ai_campfire.webp";
 import aiEverest from "../assets/ai_everest.webp";
+import { NavLink } from "react-router-dom";
 
 type ExpeditionProps = {
     image: string;
@@ -22,9 +23,9 @@ const Expedition: React.FC<ExpeditionProps> = ({ image, imageAlt, heading, descr
             <p>{description}</p>
             <div className="wp-block-buttons is-layout-flex wp-block-buttons-is-layout-flex">
                 <div className="wp-block-button">
-                    <a className="wp-block-button__link wp-element-button" href="#">
+                    <NavLink className="wp-block-button__link wp-element-button" to="/booking">
                         Book your adventure
-                    </a>
+                    </NavLink>
                 </div>
             </div>
         </div>

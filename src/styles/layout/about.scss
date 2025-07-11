@@ -2,6 +2,7 @@
 
 .about {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     width: 100%;
     background: linear-gradient(180deg, rgba(0, 0, 0 ,0) 0%, var(--dark-green) 30%);
@@ -19,8 +20,9 @@
 
 @media (max-width: variables.$breakpoint) {
     .about{
+        flex-direction: column;
         background: linear-gradient(180deg, rgba(0, 0, 0 ,0) 0%, var(--dark-green) 8%);
-        padding-top: var(--large-gap);
+        padding: 0  0.5rem var(--large-gap) 0.5rem;
     }
 
 }

@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import BurgerMenu from "./BurgerMenu";
 
 const Header = () => {
@@ -7,9 +7,9 @@ const Header = () => {
 
     // Example menu items; replace with your actual menu data or CMS integration
     const menu = [
-        { id: 1, title: "Booking", url: "/" },
-        { id: 2, title: "Adventure", url: "#adventure" },
-        { id: 3, title: "Explore", url: "#explore" },
+        { id: 1, title: "Booking", url: "#booking" },
+        { id: 2, title: "Expeditions", url: "#expeditions" },
+        { id: 3, title: "Adventure", url: "#adventure" },
         { id: 4, title: "About", url: "#about" }
     ];
 
@@ -25,15 +25,15 @@ const Header = () => {
             <nav id="site-navigation" className="desktop-nav">
                 <ul>
                     <li>
-                        <a href={isHomePage ? "#" : "/"} onClick={handleHomeClick}>
+                        <NavLink to={isHomePage ? "#" : "/"} onClick={handleHomeClick}>
                             Summit Seekers
-                        </a>
+                        </NavLink>
                     </li>
                     {menu.map((item) => (
                         <li key={item.url}>
-                            <a href={item.url} className={location.pathname === item.url ? "active" : ""}>
+                            <NavLink to={item.url} className={location.pathname === item.url ? "active" : ""}>
                                 {item.title}
-                            </a>
+                            </NavLink>
                         </li>
                     ))}
                 </ul>

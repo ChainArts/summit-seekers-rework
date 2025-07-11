@@ -3,6 +3,7 @@
 .expedition {
     display: flex;
     gap: var(--large-gap);
+    flex-direction: column;
 
     margin: calc(var(--large-gap) / 2) 0;
 
@@ -25,6 +26,7 @@
 
 @media (min-width: variables.$breakpoint) {
     .expedition {
+        flex-direction: row;
 
         .wp-block-buttons {
             margin-left: 0;

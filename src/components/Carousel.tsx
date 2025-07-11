@@ -63,9 +63,8 @@ interface CarouselButtonProps {
 }
 
 function CarouselButton({ direction, swiperRef }: CarouselButtonProps) {
-    const swiper = swiperRef.current;
-
     const handleClick = () => {
+        const swiper = swiperRef.current;
         if (!swiper) return;
         if (direction === "next") {
             swiper.slideNext();
