@@ -31,9 +31,9 @@ const Header = () => {
                     </li>
                     {menu.map((item) => (
                         <li key={item.url}>
-                            <NavLink to={item.url} className={location.pathname === item.url ? "active" : ""}>
+                            <a href={item.url} className={location.pathname === item.url ? "active" : ""}>
                                 {item.title}
-                            </NavLink>
+                            </a>
                         </li>
                     ))}
                 </ul>
