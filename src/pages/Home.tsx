@@ -6,10 +6,23 @@ import IconGrid from "../components/IconGrid";
 import Navbar from "../components/Navbar";
 import { posts } from "../data/adventures";
 import BookingGrid from "../components/BookingGrid";
+import { useLenis } from 'lenis/react';
 
 
 
 const Home = () => {
+    const lenis = useLenis();
+
+    const handleBookingClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
+        const targetElement = document.querySelector("#booking") as HTMLElement;
+        if (targetElement && lenis) {
+            lenis.scrollTo(targetElement);
+        } else if (targetElement) {
+            targetElement.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+
     return (
         <main className="home">
             <HeaderParallax />
@@ -31,7 +44,7 @@ const Home = () => {
             <Carousel posts={posts} />
             <div className="wp-block-buttons">
                 <div className="wp-block-button">
-                    <a className="wp-block-button__link" href="#booking">Book your Adventure</a>
+                    <a className="wp-block-button__link" href="#booking" onClick={handleBookingClick}>Book your Adventure</a>
                 </div>
             </div>
             <h1 id="about" className="wp-block-heading">

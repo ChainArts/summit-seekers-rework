@@ -1,9 +1,11 @@
 import { NavLink, useLocation } from "react-router-dom";
 import BurgerMenu from "./BurgerMenu";
+import { useLenis } from 'lenis/react';
 
 const Header = () => {
     const location = useLocation();
     const isHomePage = location.pathname === "/";
+    const lenis = useLenis();
 
     // Example menu items; replace with your actual menu data or CMS integration
     const menu = [
@@ -16,7 +18,21 @@ const Header = () => {
     const handleHomeClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
         if (isHomePage) {
             e.preventDefault();
-            window.scrollTo({ top: 0, behavior: "smooth" });
+            if (lenis) {
+                lenis.scrollTo(0);
+            } else {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+        }
+    };
+
+    const handleSectionClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+        e.preventDefault();
+        const targetElement = document.querySelector(targetId) as HTMLElement;
+        if (targetElement && lenis) {
+            lenis.scrollTo(targetElement);
+        } else if (targetElement) {
+            targetElement.scrollIntoView({ behavior: "smooth" });
         }
     };
 
@@ -31,7 +47,11 @@ const Header = () => {
                     </li>
                     {menu.map((item) => (
                         <li key={item.url}>
-                            <a href={item.url} className={location.pathname === item.url ? "active" : ""}>
+                            <a 
+                                href={item.url} 
+                                className={location.pathname === item.url ? "active" : ""}
+                                onClick={(e) => handleSectionClick(e, item.url)}
+                            >
                                 {item.title}
                             </a>
                         </li>
