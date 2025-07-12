@@ -87,7 +87,9 @@ main.booking {
 
 @media screen and (max-width: variables.$breakpoint) {
     main.booking {
+        padding: 0;
         .booking-container {
+            padding: 0 1rem;
             grid-template-columns: 1fr;
             gap: var(--inner-section-padding);
 

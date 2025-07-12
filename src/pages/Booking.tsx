@@ -11,45 +11,6 @@ const booking = {
     content: <p>Join us for an unforgettable adventure in the Swiss Alps! Experience breathtaking views, expert guides, and a journey you'll never forget.</p>,
     form: {
         title: "Book Your Adventure",
-        content: (
-            <form className="wpcf7-form">
-                <p className="form-name-input">
-                    <label>
-                    
-                        <span>
-                            <input type="text" name="firstname" placeholder="First Name" required />
-                        </span>
-                    </label>
-                    <label>
-                
-                        <span>
-                            <input type="text" name="lastname" placeholder="Last Name" required />
-                        </span>
-                    </label>
-                </p>
-                <p>
-                    <label>
-                    
-                        <span>
-                            <input type="email" name="email" required />
-                        </span>
-                    </label>
-                </p>
-                <p>
-                    <label>
-                
-                        <textarea name="questions" rows={4} />
-                    </label>
-                </p>
-                <p>
-                    <div className="wp-block-buttons">
-                        <div className="wp-block-button">
-                            <a className="wp-block-button__link" type="submit">Book your Adventure</a>
-                        </div>
-                    </div>
-                </p>
-            </form>
-        ),
     },
 };
 
@@ -67,7 +28,7 @@ const formatBookingDates = (startStr: string, endStr: string) => {
     } else {
         return start.toLocaleDateString("en-GB", { day: "2-digit", month: "long", year: "numeric" }) + " - " + end.toLocaleDateString("en-GB", { day: "2-digit", month: "long", year: "numeric" });
     }
-}
+};
 
 const Booking = () => {
     return (
@@ -104,12 +65,46 @@ const Booking = () => {
                     <div className="pipe"></div>
                     <div className="booking-form">
                         <h2>{booking.form.title}</h2>
-                        {booking.form.content}
+                        <form className="form">
+                            <div className="form-name-input">
+                                <label>
+                                    <span>
+                                        <input type="text" name="firstname" placeholder="First Name" required />
+                                    </span>
+                                </label>
+                                <label>
+                                    <span>
+                                        <input type="text" name="lastname" placeholder="Last Name" required />
+                                    </span>
+                                </label>
+                            </div>
+                            <div className="form-email-input">
+                                <label>
+                                    <span>
+                                        <input type="email" name="email" placeholder="E-Mail" required />
+                                    </span>
+                                </label>
+                            </div>
+                            <div className="form-message-input">
+                                <label>
+                                    <textarea name="questions" rows={5} placeholder="Do you have any questions?"/>
+                                </label>
+                            </div>
+                            <div>
+                                <div className="wp-block-buttons">
+                                    <div className="wp-block-button">
+                                        <a className="wp-block-button__link" type="submit">
+                                            Book your Adventure
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </main>
         </>
     );
-}
+};
 
 export default Booking;
