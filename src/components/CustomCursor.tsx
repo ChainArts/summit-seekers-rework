@@ -1,16 +1,16 @@
-import { useState, useEffect } from 'react';
-import { motion, cubicBezier } from 'framer-motion';
-import useMousePos from './useMousePos';
-import { LiaAngleRightSolid } from 'react-icons/lia';
-
+import { useState, useEffect } from "react";
+import { motion, cubicBezier } from "motion/react";
+import useMousePos from "./useMousePos";
+import { LiaAngleRightSolid } from "react-icons/lia";
+import { useLocation } from "react-router-dom";
 
 const CustomCursor = () => {
     //Init as early as possible
-
+    const location = useLocation();
     const { x, y } = useMousePos();
     const [isHovered, setIsHovered] = useState<React.ReactNode>(null);
     const [cursorText, setCursorText] = useState<React.ReactNode>(null);
-    
+
     // State to track hover state
 
     const handleHoverStart = () => {
@@ -26,35 +26,44 @@ const CustomCursor = () => {
     };
 
     useEffect(() => {
+        // whenever the URL changes, clear hover state
+        setIsHovered(false);
+        setCursorText(null);
+    }, [location.pathname]);
+
+    useEffect(() => {
         const delay = setTimeout(() => {
-            const anchors = document.querySelectorAll('a, .wp-block-button, .cursor-anchor, wpcf7-submit');
+            const anchors = document.querySelectorAll("a, .wp-block-button, .cursor-anchor");
 
             anchors.forEach((anchor) => {
-                anchor.addEventListener('mouseenter', handleHoverStart);
-                anchor.addEventListener('mouseleave', handleHoverEnd);
+                anchor.addEventListener("mouseenter", handleHoverStart);
+                anchor.addEventListener("mouseleave", handleHoverEnd);
             });
 
             return () => {
                 // Cleanup event listeners on unmount
                 anchors.forEach((anchor) => {
-                    anchor.removeEventListener('mouseenter', handleHoverStart);
-                    anchor.removeEventListener('mouseleave', handleHoverEnd);
+                    anchor.removeEventListener("mouseenter", handleHoverStart);
+                    anchor.removeEventListener("mouseleave", handleHoverEnd);
                 });
-            }
+                setIsHovered(false);
+                setCursorText(null);
+            };
         }, 1000);
         return () => clearTimeout(delay);
     }, []);
 
     return (
-        <motion.div className={`custom-cursor ${isHovered ? 'hovered' : ''}`}
+        <motion.div
+            className={`custom-cursor ${isHovered ? "hovered" : ""}`}
             animate={{
                 translateX: `${x}px`,
-                translateY: `${y}px`
+                translateY: `${y}px`,
             }}
             transition={{
                 type: "tween",
-                ease: cubicBezier(.14, .8, .4, 1),
-                duration: .4
+                ease: cubicBezier(0.14, 0.8, 0.4, 1),
+                duration: 0.4,
             }}
         >
             <div className="cursor-bubble">
@@ -63,12 +72,13 @@ const CustomCursor = () => {
                     <div className="corner left-bottom"></div>
                     <div className="corner right-top"></div>
                     <div className="corner right-bottom"></div>
-
                 </div>
-                <div className="cursor-text" id="cursor-text">{cursorText}</div>
+                <div className="cursor-text" id="cursor-text">
+                    {cursorText}
+                </div>
             </div>
         </motion.div>
     );
-}
+};
 
 export default CustomCursor;
