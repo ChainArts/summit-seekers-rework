@@ -31,7 +31,7 @@ const Home = () => {
             <Carousel posts={posts} />
             <div className="wp-block-buttons">
                 <div className="wp-block-button">
-                    <a className="wp-block-button__link">Book your Adventure</a>
+                    <a className="wp-block-button__link" href="#booking">Book your Adventure</a>
                 </div>
             </div>
             <h1 id="about" className="wp-block-heading">

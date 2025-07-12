@@ -14,7 +14,7 @@ const App = () => {
             <CustomCursor />
             <Routes>
                 <Route path="/" element={<Home/>} />
-                <Route path="/booking" element={<Booking />} />
+                <Route path="/booking/:slug" element={<Booking />} />
                 <Route path="/adventure/:slug" element={<Adventure /> } />
             </Routes>
             <Footer />

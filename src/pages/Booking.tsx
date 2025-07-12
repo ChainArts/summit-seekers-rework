@@ -1,18 +1,6 @@
-import aiAlps from "../assets/ai_alps.webp";
 import Navbar from "../components/Navbar";
-
-const booking = {
-    image: aiAlps,
-    title: "Alpine Adventure",
-    start: "2025-08-01",
-    end: "2025-08-07",
-    location: "Swiss Alps",
-    cost: "€1,200",
-    content: <p>Join us for an unforgettable adventure in the Swiss Alps! Experience breathtaking views, expert guides, and a journey you'll never forget.</p>,
-    form: {
-        title: "Book Your Adventure",
-    },
-};
+import { bookings } from "../data/bookings";
+import { useParams } from "react-router-dom";
 
 // Helper to format dates
 const formatBookingDates = (startStr: string, endStr: string) => {
@@ -31,6 +19,18 @@ const formatBookingDates = (startStr: string, endStr: string) => {
 };
 
 const Booking = () => {
+    const { slug } = useParams();
+    const booking = bookings.find((b) => b.slug === slug);
+    if (!booking) {
+        return (
+            <>
+                <Navbar />
+                <main>
+                    <h2>Booking not found</h2>
+                </main>
+            </>
+        );
+    }
     return (
         <>
             <Navbar />
@@ -46,25 +46,25 @@ const Booking = () => {
                             <li>Location: {booking.location}</li>
                             <li>Price: {booking.cost}</li>
                         </ul>
-                        {booking.content}
+                        <p>{booking.text}</p>
                         <div className="wp-block-columns">
                             <div className="wp-block-column">
-                                <p>02</p>
+                                <p>{booking.days}</p>
                                 <p>Days</p>
                             </div>
                             <div className="wp-block-column">
-                                <p>3.798</p>
+                                <p>{booking.meters}</p>
                                 <p>Meters</p>
                             </div>
                             <div className="wp-block-column">
-                                <p>01</p>
+                                <p>{booking.level}</p>
                                 <p>Level</p>
                             </div>
                         </div>
                     </div>
                     <div className="pipe"></div>
                     <div className="booking-form">
-                        <h2>{booking.form.title}</h2>
+                        <h2>Book your Adventure</h2>
                         <form className="form">
                             <div className="form-name-input">
                                 <label>

@@ -1,44 +1,5 @@
-import aiAlps from "../assets/ai_alps.webp";
+import { bookings } from "../data/bookings";
 
-// Example hardcoded booking data
-const bookings = [
-    {
-        id: 1,
-        title: "Alpine Adventure",
-        location: "Swiss Alps",
-        start: "2025-08-01",
-        end: "2025-08-07",
-        image: aiAlps,
-        link: "/booking",
-    },
-    {
-        id: 2,
-        title: "Desert Trek",
-        location: "Sahara",
-        start: "2025-09-10",
-        end: "2025-09-17",
-        image: aiAlps,
-        link: "/booking",
-    },
-    {
-        id: 3,
-        title: "Rainforest Expedition",
-        location: "Amazon",
-        start: "2025-10-05",
-        end: "2025-10-12",
-        image: aiAlps,
-        link: "/booking",
-    },
-    {
-        id: 4,
-        title: "Northern Lights Quest",
-        location: "Iceland",
-        start: "2025-11-15",
-        end: "2025-11-22",
-        image: aiAlps,
-        link: "/booking",
-    },
-];
 
 // Helper to convert date to [day, month]
 function convertDate(dateStr: string): [string, string] {
@@ -87,7 +48,7 @@ const BookingGrid = () => {
     if (bookings.length === 0) return null;
 
     return (
-        <div className="booking-grid contain">
+        <div className="booking-grid contain" id="booking">
             <BookingGridItem booking={bookings[0]} />
             <div className="booking-grid-later">
                 {bookings.slice(1).map((booking) => (
