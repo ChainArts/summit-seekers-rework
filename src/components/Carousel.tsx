@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { LiaArrowRightSolid, LiaAngleLeftSolid, LiaAngleRightSolid } from "react-icons/lia";
+import { NavLink } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperClass } from "swiper/types";
 
@@ -9,11 +10,13 @@ interface PostMeta {
 
 export interface CarouselPost {
     id: number;
+    slug: string;
     imagePath: string;
     alt?: string;
     link: string;
     title: string;
     meta?: PostMeta;
+    content?: Array<string> | string; // Allow content to be an array of strings or a single string
 }
 
 interface CarouselProps {
@@ -88,7 +91,7 @@ const CarouselItem = ({ data }: CarouselItemProps) => {
     const { imagePath, alt, link, title, meta } = data;
 
     return (
-        <a href={link} className="card">
+        <NavLink to={link} className="card">
             <div className="picture-container">
                 <img src={imagePath} alt={alt || title} />
             </div>
@@ -97,7 +100,7 @@ const CarouselItem = ({ data }: CarouselItemProps) => {
                 <h3>{title}</h3>
                 <p>{meta?.footnotes}</p>
             </div>
-        </a>
+        </NavLink>
     );
 };
 

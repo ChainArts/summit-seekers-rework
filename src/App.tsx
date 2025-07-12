@@ -15,7 +15,7 @@ const App = () => {
             <Routes>
                 <Route path="/" element={<Home/>} />
                 <Route path="/booking" element={<Booking />} />
-                <Route path="/adventure" element={<Adventure /> } />
+                <Route path="/adventure/:slug" element={<Adventure /> } />
             </Routes>
             <Footer />
       </ReactLenis>

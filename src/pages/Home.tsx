@@ -1,40 +1,13 @@
 import About from "../components/About";
-import Carousel, { type CarouselPost } from "../components/Carousel";
+import Carousel from "../components/Carousel";
 import Expeditions from "../components/Expeditions";
 import HeaderParallax from "../components/HeaderParallax";
 import IconGrid from "../components/IconGrid";
 import Navbar from "../components/Navbar";
-import aiTianzi from "../assets/ai_tianzi_mountains.webp";
-import aiAlps from "../assets/ai_alps.webp";
-import aiCanyon from "../assets/ai_canyon.webp";
+import { posts } from "../data/adventures";
 import BookingGrid from "../components/BookingGrid";
 
-const posts: CarouselPost[] = [
-    {
-        id: 1,
-        imagePath: aiAlps,
-        alt: "Alps",
-        link: "/adventure",
-        title: "Alps",
-        meta: { footnotes: "Austria, Carinthia" },
-    },
-    {
-        id: 2,
-        imagePath: aiCanyon,
-        alt: "Grand Canyon",
-        link: "/adventure",
-        title: "Grand Canyon",
-        meta: { footnotes: "USA, Arizona" },
-    },
-    {
-        id: 3,
-        imagePath: aiTianzi,
-        alt: "Sample 1",
-        link: "/adventure",
-        title: "Zhangjiajie National Forest",
-        meta: { footnotes: "China, Hunan Province" },
-    },
-];
+
 
 const Home = () => {
     return (
