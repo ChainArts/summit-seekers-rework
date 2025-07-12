@@ -6,22 +6,27 @@ import IconGrid from "../components/IconGrid";
 import Navbar from "../components/Navbar";
 import { posts } from "../data/adventures";
 import BookingGrid from "../components/BookingGrid";
-import { useLenis } from 'lenis/react';
-
-
+import { useLenis } from "lenis/react";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigation } from "../hooks/useNavigation";
 
 const Home = () => {
     const lenis = useLenis();
+    const location = useLocation();
+    const { handleNavigation } = useNavigation();
 
-    const handleBookingClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-        e.preventDefault();
-        const targetElement = document.querySelector("#booking") as HTMLElement;
-        if (targetElement && lenis) {
-            lenis.scrollTo(targetElement);
-        } else if (targetElement) {
-            targetElement.scrollIntoView({ behavior: "smooth" });
+    useEffect(() => {
+        if (location.hash && lenis) {
+            // Small delay to ensure the page has rendered
+            setTimeout(() => {
+                const element = document.querySelector(location.hash) as HTMLElement | null;
+                if (element) {
+                    lenis.scrollTo(element);
+                }
+            }, 500);
         }
-    };
+    }, [location.hash, lenis]);
 
     return (
         <main className="home">
@@ -44,7 +49,9 @@ const Home = () => {
             <Carousel posts={posts} />
             <div className="wp-block-buttons">
                 <div className="wp-block-button">
-                    <a className="wp-block-button__link" href="#booking" onClick={handleBookingClick}>Book your Adventure</a>
+                    <a className="wp-block-button__link" href="#booking" onClick={(e) => handleNavigation(e, "/#booking")}>
+                        Book your Adventure
+                    </a>
                 </div>
             </div>
             <h1 id="about" className="wp-block-heading">

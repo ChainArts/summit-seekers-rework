@@ -2,8 +2,8 @@
 
 .burger {
     position: fixed;
-    top: 2rem;
-    right: 0.5rem;
+    top: 0.5rem;
+    left: calc(100vw - 5rem);
     z-index: 999;
     height: 4rem;
     width: 4rem;

@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, useTransform, useScroll, cubicBezier, AnimatePresence } from "motion/react";
-import { useLenis } from 'lenis/react';
+import { menu } from "../data/menu";
 import PR_layer_1 from '../assets/par_bg_layer_1.webp';
 import PR_layer_2 from '../assets/par_bg_layer_2.webp';
 import PR_layer_3 from '../assets/par_bg_layer_3.webp';
@@ -8,6 +8,7 @@ import PR_layer_4 from '../assets/par_bg_layer_4.webp';
 import PR_layer_5 from '../assets/par_bg_layer_5.webp';
 import PR_layer_6 from '../assets/par_bg_layer_6.webp';
 import PR_layer_7 from '../assets/par_bg_layer_7.webp';
+import { useNavigation } from "../hooks/useNavigation";
 
 const navVariants = {
     hidden: {
@@ -66,25 +67,7 @@ const scrollIndicator = {
 
 
 const HeroNav = () => {
-    const lenis = useLenis();
-
-    const menu = [
-        { id: 1, title: "Booking", url: "#booking" },
-        { id: 2, title: "Expeditions", url: "#expeditions" },
-        { id: 3, title: "Adventure", url: "#adventure" },
-        { id: 4, title: "About", url: "#about" }
-    ];
-
-    const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
-        e.preventDefault();
-        const targetElement = document.querySelector(targetId) as HTMLElement;
-        if (targetElement && lenis) {
-            lenis.scrollTo(targetElement);
-        } else if (targetElement) {
-            targetElement.scrollIntoView({ behavior: "smooth" });
-        }
-    };
-
+    const { handleNavigation } = useNavigation();
     return (
         <AnimatePresence>
         {menu && (
@@ -92,7 +75,7 @@ const HeroNav = () => {
                     <motion.ul variants={ulVariants}>
                         {menu.map((item) => (
                             <motion.li key={item.id} variants={liVariants}>
-                                <motion.a href={item.url} onClick={(e) => handleNavClick(e, item.url)}>{item.title}</motion.a>
+                                <motion.a href={item.url} onClick={(e) => handleNavigation(e, item.url)}>{item.title}</motion.a>
                             </motion.li>
                         ))}
                     </motion.ul>
@@ -111,20 +94,8 @@ const HeroNav = () => {
 }
 
 const ScrollMarquee = () => {
-    const lenis = useLenis();
-
-    const handleScrollClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-        e.preventDefault();
-        const targetElement = document.querySelector("#booking") as HTMLElement;
-        if (targetElement && lenis) {
-            lenis.scrollTo(targetElement);
-        } else if (targetElement) {
-            targetElement.scrollIntoView({ behavior: "smooth" });
-        }
-    };
-
     return (
-        <a className="scroll-marquee" href="/#booking" style={{ zIndex: 3 }} onClick={handleScrollClick}>
+        <a className="scroll-marquee" href="/#booking" style={{ zIndex: 3 }}>
             <motion.div className="scroll-indicator">
                 <motion.div className="scroll-indicator-slider" variants={scrollIndicator} animate="animate" />
             </motion.div>
