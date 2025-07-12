@@ -26,12 +26,7 @@ const CustomCursor = () => {
     };
 
     useEffect(() => {
-        // whenever the URL changes, clear hover state
-        setIsHovered(false);
-        setCursorText(null);
-    }, [location.pathname]);
-
-    useEffect(() => {
+        handleHoverEnd(); // Reset hover state on location change
         const delay = setTimeout(() => {
             const anchors = document.querySelectorAll("a, .wp-block-button, .cursor-anchor");
 
@@ -46,12 +41,10 @@ const CustomCursor = () => {
                     anchor.removeEventListener("mouseenter", handleHoverStart);
                     anchor.removeEventListener("mouseleave", handleHoverEnd);
                 });
-                setIsHovered(false);
-                setCursorText(null);
             };
         }, 1000);
         return () => clearTimeout(delay);
-    }, []);
+    }, [location.pathname]);
 
     return (
         <motion.div
