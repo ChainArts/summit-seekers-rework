@@ -48,7 +48,7 @@ const BookingGrid = () => {
     if (bookings.length === 0) return null;
 
     return (
-        <div className="booking-grid contain" id="booking">
+        <div className="booking-grid contain">
             <BookingGridItem booking={bookings[0]} />
             <div className="booking-grid-later">
                 {bookings.slice(1).map((booking) => (

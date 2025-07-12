@@ -4,7 +4,7 @@ import campingIcon from "../assets/camping-icon.svg";
 
 
 const IconGrid = () => (
-    <div className="icon-grid">
+    <div className="icon-grid" id="booking">
         <div>
             <div className="wp-block-image is-style-default">
                 <figure>
